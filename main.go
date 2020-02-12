@@ -38,21 +38,20 @@ func main() {
 
 	flag.Parse()
 
-	location = make(map[string]Coordinates)
+	location = map[string]Coordinates{
 
-	location["slc"] = Coordinates{
-		45.7386,
-		4.4637,
-	}
-
-	location["lyon"] = Coordinates{
-		45.7597,
-		4.8342,
-	}
-
-	location["paris"] = Coordinates{
-		48.8617,
-		2.3429,
+		"slc": Coordinates{
+			45.7386,
+			4.4637,
+		},
+		"lyon": Coordinates{
+			45.7597,
+			4.8342,
+		},
+		"paris": Coordinates{
+			48.8617,
+			2.3429,
+		},
 	}
 
 	randomPoint := generateRandomPoint(int(dist))
