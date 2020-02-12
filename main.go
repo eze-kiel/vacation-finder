@@ -25,9 +25,17 @@ var location map[string]Coordinates
 func main() {
 	var place string
 	var dist int64
+	var lat float64
+	var long float64
 
-	flag.StringVar(&place, "place", "slc", "the name of the place you want to leave")
+	flag.StringVar(&place, "place", "slc", "the name of your starting point")
 	flag.Int64Var(&dist, "dist", 100, "the distance in kilometers from your start point")
+
+	// useless for now
+	flag.Float64Var(&lat, "lat", 0, "your starting latitude")
+	flag.Float64Var(&long, "long", 0, "your starting longitude")
+	//
+
 	flag.Parse()
 
 	location = make(map[string]Coordinates)
