@@ -5,12 +5,11 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"log"
 	"math"
 	"math/rand"
-	"os"
-	"strconv"
 	"time"
 )
 
@@ -24,15 +23,23 @@ type Coordinates struct {
 var location map[string]Coordinates
 
 func main() {
-	dist, err := strconv.ParseInt(os.Args[1], 10, 64)
-	checkErrors(err)
-	place := os.Args[2]
+	var place string
+	var dist int64
+
+	flag.StringVar(&place, "place", "slc", "the name of the place you want to leave")
+	flag.Int64Var(&dist, "dist", 100, "the distance in kilometers from your start point")
+	flag.Parse()
 
 	location = make(map[string]Coordinates)
 
 	location["slc"] = Coordinates{
 		45.7386,
 		4.4637,
+	}
+
+	location["lyon"] = Coordinates{
+		45.7597,
+		4.8342,
 	}
 
 	randomPoint := generateRandomPoint(int(dist))
