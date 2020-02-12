@@ -11,3 +11,10 @@ Sort a random latitude and longitude in function of a given start point and a ma
 
 ## Existing places
 - Lyon, FR (45.7597, 4.8342)
+- Paris, FR (48.8617, 2.3429)
+
+## Author
+Written by ezekiel.
+
+## Copyright
+ Copyright © 2017 Free Software Foundation, Inc.  License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>. This is free software: you are free to change and redistribute it. There  is  NO WARRANTY, to the extent permitted by law.

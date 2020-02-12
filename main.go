@@ -50,6 +50,11 @@ func main() {
 		4.8342,
 	}
 
+	location["paris"] = Coordinates{
+		48.8617,
+		2.3429,
+	}
+
 	randomPoint := generateRandomPoint(int(dist))
 
 	convertedPoint := kmToCoordinates(randomPoint, location[place])
