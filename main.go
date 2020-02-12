@@ -75,15 +75,11 @@ func checkErrors(err error) {
 func generateRandomPoint(dist int) (newPoint Coordinates) {
 	rand.Seed(time.Now().UnixNano())
 	y := rand.Intn((dist * 2) + 1)
-	if y <= 150 {
-		y = -y
-	}
+	y = dist - y
 
 	rand.Seed(time.Now().UnixNano())
 	x := rand.Intn((dist * 2) + 1)
-	if x <= 150 {
-		x = -x
-	}
+	x = dist - x
 
 	newPoint = Coordinates{float64(y), float64(x)}
 	return newPoint
