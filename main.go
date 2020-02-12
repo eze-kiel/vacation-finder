@@ -1,3 +1,7 @@
+/*
+	Author:	ezekiel
+*/
+
 package main
 
 import (
@@ -51,13 +55,13 @@ func checkErrors(err error) {
 func generateRandomPoint(dist int) (newPoint Coordinates) {
 	rand.Seed(time.Now().UnixNano())
 	y := rand.Intn(dist*2-1+1) + 1
-	if y < 150 {
+	if y <= 150 {
 		y = -y
 	}
 
 	rand.Seed(time.Now().UnixNano())
 	x := rand.Intn(dist*2-1+1) + 1
-	if x < 150 {
+	if x <= 150 {
 		x = -x
 	}
 
