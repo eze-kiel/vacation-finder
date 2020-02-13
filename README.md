@@ -10,7 +10,7 @@ Don't know where to go on vacations ? Let the computer decide for you !
 
 Sort a random latitude and longitude in function of a given start point and a maximal distance.
 
-`-place PLACE` define your starting point on a known[^1] place (see below). Only accept _strings_.
+`-place PLACE` define your starting point on a known¹ place (see below). Only accept _strings_.
 
 `-dist DISTANCE` define the maximal vertical and horizontal distance you want. This information create a square around your starting point in which a random pair of coordinates will be chosen. Only accept _integers_.
 
@@ -18,7 +18,7 @@ Sort a random latitude and longitude in function of a given start point and a ma
 
 `-coord LAT,LONG` allow the user to give a pair of coordinates to replace a city name. Only accept _strings_ with **NO** space between latitude and longitude.
 
-[^1]: Known places are written in [locations.yaml](locations.yml).
+¹ Known places are written in [locations.yaml](locations.yml).
 
 ## Existing places
 
