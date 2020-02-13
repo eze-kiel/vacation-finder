@@ -19,20 +19,16 @@ import (
 const EarthCirc = 40000
 const LatLength = 111
 
-// type Coordinates struct {
-// 	Lat, Long float64
-// }
-
-// var location map[string]Coordinates
-
 func main() {
 	var place string
 	var dist int64
+	var n int
 	var lat float64
 	var long float64
 
 	flag.StringVar(&place, "place", "slc", "the name of your starting point")
 	flag.Int64Var(&dist, "dist", 100, "the distance in kilometers from your start point")
+	flag.IntVar(&n, "n", 1, "number of points generated")
 
 	// useless for now
 	flag.Float64Var(&lat, "lat", 0, "your starting latitude")
@@ -51,15 +47,19 @@ func main() {
 		log.Fatal(err)
 	}
 
-	randomPoint := generateRandomPoint(int(dist))
+	for x := 0; x < n; x++ {
 
-	convertedPoint := kmToCoordinates(randomPoint, places[place])
-	fmt.Printf("%d max from %s\n", dist, place)
-	fmt.Printf("%f km ver and %f km hor\n", randomPoint.Latitude, randomPoint.Longitude)
-	fmt.Printf("%s : %f %f\n", place, places[place].Latitude, places[place].Longitude)
-	fmt.Printf("Converted point : lat = %f && long = %f\n", convertedPoint.Latitude, convertedPoint.Longitude)
-	fmt.Printf("%f %f\n", convertedPoint.Latitude, convertedPoint.Longitude)
-	fmt.Printf("https://www.google.fr/maps/@%f,%f,12z\n", convertedPoint.Latitude, convertedPoint.Longitude)
+		fmt.Printf("\nPoint #%d/%d :\n", x+1, n)
+		randomPoint := generateRandomPoint(int(dist))
+
+		convertedPoint := kmToCoordinates(randomPoint, places[place])
+		fmt.Printf("%d max from %s\n", dist, place)
+		fmt.Printf("%f km ver and %f km hor\n", randomPoint.Latitude, randomPoint.Longitude)
+		fmt.Printf("%s : %f %f\n", place, places[place].Latitude, places[place].Longitude)
+		fmt.Printf("Converted point : lat = %f && long = %f\n", convertedPoint.Latitude, convertedPoint.Longitude)
+		fmt.Printf("%f %f\n", convertedPoint.Latitude, convertedPoint.Longitude)
+		fmt.Printf("https://www.google.fr/maps/@%f,%f,12z\n", convertedPoint.Latitude, convertedPoint.Longitude)
+	}
 }
 
 func checkErrors(err error) {
