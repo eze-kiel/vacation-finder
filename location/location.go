@@ -38,6 +38,8 @@ func Import(r io.Reader) (map[string]Coordinates, error) {
 
 	locations := map[string]Coordinates{}
 
+	//For key, value in the simple locations array, the coords are splitted at the coma and insered in a string array called coords.
+	//Next the spaces are trimed in order to keep only the values
 	for k, v := range slocations {
 		coords := strings.Split(v, ",")
 		coords[0] = strings.TrimSpace(coords[0])
@@ -52,7 +54,7 @@ func Import(r io.Reader) (map[string]Coordinates, error) {
 		if err != nil {
 			return nil, err
 		}
-
+		//k is set as the key of the returned map
 		locations[k] = Coordinates{
 			Latitude:  lat,
 			Longitude: lon,

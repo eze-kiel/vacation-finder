@@ -23,17 +23,10 @@ func main() {
 	var place string
 	var dist int64
 	var n int
-	var lat float64
-	var long float64
 
 	flag.StringVar(&place, "place", "slc", "the name of your starting point")
 	flag.Int64Var(&dist, "dist", 100, "the distance in kilometers from your start point")
 	flag.IntVar(&n, "n", 1, "number of points generated")
-
-	// useless for now
-	flag.Float64Var(&lat, "lat", 0, "your starting latitude")
-	flag.Float64Var(&long, "long", 0, "your starting longitude")
-	//
 
 	flag.Parse()
 
