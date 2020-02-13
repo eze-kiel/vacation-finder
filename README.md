@@ -13,8 +13,14 @@ Sort a random latitude and longitude in function of a given start point and a ma
 
 ¹ Known places are written in locations.yaml.
 ## Existing places
-- Lyon, FR (45.7597, 4.8342)
-- Paris, FR (48.8617, 2.3429)
+- Lyon, FR (45.7597, 4.8342), usage : ```lyon```
+- Paris, FR (48.8617, 2.3429), usage : ```paris```
+- New York City, USA (40.6700, -73.9400), usage : ```nyc```
+- Longyearbyen, NOR (78.2234, 15.6447), usage : ```longyb```
+- Roma, ITA (41.9043, 12.4942), usage : ```roma```
+- London, UK (51.5073, -0.1275), usage : ```london```
+- Reykjavik, IS (64.1431, -21.9164), usage : ```reykjk```
+- Washington D.C, USA (38.9002, -77.0365), usage : ```washdc```
 
 ## Author
 Written by ezekiel.
