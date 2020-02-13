@@ -10,17 +10,20 @@ import (
 	"log"
 	"math"
 	"math/rand"
+	"os"
 	"time"
+
+	"github.com/eze-kiel/vacation-finder/location"
 )
 
 const EarthCirc = 40000
 const LatLength = 111
 
-type Coordinates struct {
-	Lat, Long float64
-}
+// type Coordinates struct {
+// 	Lat, Long float64
+// }
 
-var location map[string]Coordinates
+// var location map[string]Coordinates
 
 func main() {
 	var place string
@@ -38,31 +41,25 @@ func main() {
 
 	flag.Parse()
 
-	location = map[string]Coordinates{
+	f, err := os.Open("locations.yml")
+	if err != nil {
+		log.Fatal(err)
+	}
 
-		"slc": Coordinates{
-			45.7386,
-			4.4637,
-		},
-		"lyon": Coordinates{
-			45.7597,
-			4.8342,
-		},
-		"paris": Coordinates{
-			48.8617,
-			2.3429,
-		},
+	places, err := location.Import(f)
+	if err != nil {
+		log.Fatal(err)
 	}
 
 	randomPoint := generateRandomPoint(int(dist))
 
-	convertedPoint := kmToCoordinates(randomPoint, location[place])
+	convertedPoint := kmToCoordinates(randomPoint, places[place])
 	fmt.Printf("%d max from %s\n", dist, place)
-	fmt.Printf("%f km ver and %f km hor\n", randomPoint.Lat, randomPoint.Long)
-	fmt.Printf("%s : %f %f\n", place, location[place].Lat, location[place].Long)
-	fmt.Printf("Converted point : lat = %f && long = %f\n", convertedPoint.Lat, convertedPoint.Long)
-	fmt.Printf("%f %f\n", convertedPoint.Lat, convertedPoint.Long)
-	fmt.Printf("https://www.google.fr/maps/@%f,%f,12z\n", convertedPoint.Lat, convertedPoint.Long)
+	fmt.Printf("%f km ver and %f km hor\n", randomPoint.Latitude, randomPoint.Longitude)
+	fmt.Printf("%s : %f %f\n", place, places[place].Latitude, places[place].Longitude)
+	fmt.Printf("Converted point : lat = %f && long = %f\n", convertedPoint.Latitude, convertedPoint.Longitude)
+	fmt.Printf("%f %f\n", convertedPoint.Latitude, convertedPoint.Longitude)
+	fmt.Printf("https://www.google.fr/maps/@%f,%f,12z\n", convertedPoint.Latitude, convertedPoint.Longitude)
 }
 
 func checkErrors(err error) {
@@ -71,7 +68,7 @@ func checkErrors(err error) {
 	}
 }
 
-func generateRandomPoint(dist int) (newPoint Coordinates) {
+func generateRandomPoint(dist int) (newPoint location.Coordinates) {
 	rand.Seed(time.Now().UnixNano())
 	y := rand.Intn((dist * 2) + 1)
 	y = dist - y
@@ -80,14 +77,14 @@ func generateRandomPoint(dist int) (newPoint Coordinates) {
 	x := rand.Intn((dist * 2) + 1)
 	x = dist - x
 
-	newPoint = Coordinates{float64(y), float64(x)}
+	newPoint = location.Coordinates{float64(y), float64(x)}
 	return newPoint
 }
 
-func kmToCoordinates(point Coordinates, place Coordinates) (RealCoordinates Coordinates) {
-	LongLength := EarthCirc * math.Cos(place.Lat*math.Pi/180) / 360
-	RealCoordinates.Lat = place.Lat + (point.Lat / LatLength)
-	RealCoordinates.Long = place.Long + (point.Long / LongLength)
+func kmToCoordinates(point location.Coordinates, place location.Coordinates) (RealCoordinates location.Coordinates) {
+	LongLength := EarthCirc * math.Cos(place.Latitude*math.Pi/180) / 360
+	RealCoordinates.Latitude = place.Latitude + (point.Latitude / LatLength)
+	RealCoordinates.Longitude = place.Longitude + (point.Longitude / LongLength)
 
 	return RealCoordinates
 }
