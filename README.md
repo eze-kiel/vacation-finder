@@ -20,4 +20,4 @@ Sort a random latitude and longitude in function of a given start point and a ma
 Written by ezekiel.
 
 ## Copyright
- Copyright © 2017 Free Software Foundation, Inc.  License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>. This is free software: you are free to change and redistribute it. There  is  NO WARRANTY, to the extent permitted by law.
+ Copyright © 2020 Free Software Foundation, Inc.  License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>. This is free software: you are free to change and redistribute it. There  is  NO WARRANTY, to the extent permitted by law.
