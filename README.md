@@ -1,4 +1,6 @@
+
 # Vacation Finder
+![Licence](https://img.shields.io/badge/License-GPL-brightgreen)
 
 Don't know where to go on vacations ? Let the computer decide for you !
 
