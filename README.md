@@ -1,7 +1,9 @@
 # Vacation Finder
 Don't know where to go on vacations ? Let the computer decide for you !
+
 ## Synopsis
 ```./main [OPTION]...```
+
 ## Description
 Sort a random latitude and longitude in function of a given start point and a maximal distance.
 
@@ -12,6 +14,7 @@ Sort a random latitude and longitude in function of a given start point and a ma
 ```-n NUMBER``` set the number of random points you want to have. Only accept _integers_.
 
 ¹ Known places are written in locations.yaml.
+
 ## Existing places
 - Lyon, FR (45.7597, 4.8342), usage : ```lyon```
 - Paris, FR (48.8617, 2.3429), usage : ```paris```

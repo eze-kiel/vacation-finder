@@ -1,6 +1,7 @@
 package location
 
 import (
+	"fmt"
 	"io"
 	"io/ioutil"
 	"strconv"
@@ -31,6 +32,7 @@ func Import(r io.Reader) (map[string]Coordinates, error) {
 	slocations := map[string]string{}
 	// var slocations []simpleLoc
 
+	fmt.Printf("parsing yaml: %s\n", b)
 	err = yaml.Unmarshal(b, slocations)
 	if err != nil {
 		return nil, err
@@ -41,6 +43,7 @@ func Import(r io.Reader) (map[string]Coordinates, error) {
 	//For key, value in the simple locations array, the coords are splitted at the coma and insered in a string array called coords.
 	//Next the spaces are trimed in order to keep only the values
 	for k, v := range slocations {
+
 		coords := strings.Split(v, ",")
 		coords[0] = strings.TrimSpace(coords[0])
 		coords[1] = strings.TrimSpace(coords[1])

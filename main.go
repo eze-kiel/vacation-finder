@@ -11,6 +11,7 @@ import (
 	"math"
 	"math/rand"
 	"os"
+	"strings"
 	"time"
 
 	"github.com/eze-kiel/vacation-finder/location"
@@ -23,22 +24,41 @@ func main() {
 	var place string
 	var dist int64
 	var n int
+	var coord string
 
 	flag.StringVar(&place, "place", "slc", "the name of your starting point")
 	flag.Int64Var(&dist, "dist", 100, "the distance in kilometers from your start point")
 	flag.IntVar(&n, "n", 1, "number of points generated")
+	flag.StringVar(&coord, "coord", "", "coordinates")
 
 	flag.Parse()
 
-	f, err := os.Open("locations.yml")
-	if err != nil {
-		log.Fatal(err)
-	}
+	var places map[string]location.Coordinates
+	var err error
 
-	places, err := location.Import(f)
-	if err != nil {
-		log.Fatal(err)
+	// fmt.Println(err)
+
+	if coord != "" {
+		place = "cli"
+		r := strings.NewReader("cli: " + coord)
+		places, err = location.Import(r)
+		fmt.Printf("%#v\n", places)
+		if err != nil {
+			log.Fatal(err)
+		}
+	} else {
+		f, err := os.Open("locations.yml")
+		if err != nil {
+			log.Fatal(err)
+		}
+		defer f.Close()
+
+		places, err = location.Import(f)
+		if err != nil {
+			log.Fatal(err)
+		}
 	}
+	// fmt.Printf("%v", places)
 
 	for x := 0; x < n; x++ {
 
@@ -46,6 +66,7 @@ func main() {
 		randomPoint := generateRandomPoint(int(dist))
 
 		convertedPoint := kmToCoordinates(randomPoint, places[place])
+
 		fmt.Printf("%d max from %s\n", dist, place)
 		fmt.Printf("%f km ver and %f km hor\n", randomPoint.Latitude, randomPoint.Longitude)
 		fmt.Printf("%s : %f %f\n", place, places[place].Latitude, places[place].Longitude)
