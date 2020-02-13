@@ -77,7 +77,7 @@ func generateRandomPoint(dist int) (newPoint location.Coordinates) {
 	x := rand.Intn((dist * 2) + 1)
 	x = dist - x
 
-	newPoint = location.Coordinates{float64(y), float64(x)}
+	newPoint = location.Coordinates{Latitude: float64(y), Longitude: float64(x)}
 	return newPoint
 }
 
